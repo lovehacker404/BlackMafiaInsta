@@ -1,5 +1,15 @@
 limit=50
 logo="""\e[1;33m
+	wel = """
+           +=========================================+
+        |..........   Instagram Cloning       ...........|
+             +-----------------------------------------+
+        |               #Author: lovehacker              | 
+        |	       whatsapp Num.+923094161457        |
+ 	|  .............. lovehacker.........            |
+             +=========================================+
+        |..........     Instagram Cloning     ...........|
+           +-----------------------------------------+
 
 lovehacker
 \e[1;36m
@@ -12,9 +22,9 @@ BlackMafia
 \e[1;31m===================================================
 """
 dependencies=( "jq" "curl" )
-for i in "${dependencies[@]}"
+for in "${dependencies[@]}"
 do
-command -v $i >/dev/null 2>&1 || {
+command -v $ >/dev/null 2>&1 || {
 apt install jq
 apt install curl
 }
